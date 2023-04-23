@@ -86,7 +86,7 @@ var result;
               {error} 
             </Text>
           }
-          { view ?(
+          { userData?.data?.id ?(
           <Text fontSize={'3xl'} p={'5'}>  
               Enter User name 
             </Text>
