@@ -81,7 +81,7 @@ var result;
         
           <Card maxW="md" bg={"blackAlpha.600"} mt={"44"}>
           {
-            error&&
+            userData?.data?.id &&
             <Text fontSize={'3xl'} p={'5'}>  
               {error} 
             </Text>
