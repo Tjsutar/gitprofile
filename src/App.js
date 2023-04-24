@@ -93,8 +93,6 @@ var result;
               <span>Name:&nbsp;&nbsp;{userData?.data?.name}</span>
               <span>No. of public repos:&nbsp;&nbsp;{userData?.data?.public_repos}</span>
               <span>No. of public gists:&nbsp;&nbsp;{userData?.data?.public_gists}</span>
-              <span>Profile created at:</span>
-              
               <span>Profile created at:&nbsp;&nbsp;{userData?.data?.created_at}</span>
             </VStack>
           </CardBody>
