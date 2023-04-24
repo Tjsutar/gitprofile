@@ -1,21 +1,15 @@
 import {
   Avatar,
-  Box,
   Button,
   Card,
   CardBody,
-  CardHeader,
   Container,
-  Flex,
   HStack,
   Heading,
-  IconButton,
   Input,
-  Link,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { BsGithub } from "react-icons/bs";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
@@ -33,21 +27,13 @@ const App = () => {
       .then((res) => {
         setView(false);
         setUserData(res);
-        console.log(res);
-        // console.log(user.data.events_url);
+        setError("");
       })
       .catch((err) => {
         setError("User not found");
-        console.log(err);
+        setView(true);
       });
   };
-
-console.log(userData?.data?.html_url);
-console.log(userData?.data?.created_at);
-
-// let date=userData?.data?.created_at;
-//  let time=date.split("T");
-//  console.log(time[0] + time[1]);
 
 var result;
 
@@ -78,22 +64,21 @@ var result;
           </HStack>
         </form>
 
-        
           <Card maxW="md" bg={"blackAlpha.600"} mt={"44"}>
           {
-            userData?.data?.id &&
+            error&&
             <Text fontSize={'3xl'} p={'5'}>  
               {error} 
             </Text>
           }
-          { userData?.data?.id ?(
-          <Text fontSize={'3xl'} p={'5'}>  
+          { view ?(
+          <Text fontSize={'3xl'} p={'4'}>  
               Enter User name 
             </Text>
 
           ):(
 
-            <CardBody w={'60'}>
+            <CardBody w={'70'}>
             <VStack  alignItems={'flex-start'}>
               <HStack justifyContent={'space-around'}>
                 <Avatar
@@ -101,25 +86,16 @@ var result;
                   name={userData?.data?.name}
                   src={userData?.data?.avatar_url}
                 />
-                <HStack></HStack>
+                <HStack><Heading size="md">{userData?.data?.name}</Heading></HStack>
               </HStack>
               
-              {/* <Heading size="md">{userData?.data?.name}</Heading> */}
-              <span>
-                No. of public repos:&nbsp;&nbsp;{userData?.data?.public_repos}
-              </span>
-              <span>
-                No. of public gists:&nbsp;&nbsp;{userData?.data?.public_gists}
-              </span>
+              <span>Username:&nbsp;&nbsp;{userData?.data?.login}</span>
+              <span>Name:&nbsp;&nbsp;{userData?.data?.name}</span>
+              <span>No. of public repos:&nbsp;&nbsp;{userData?.data?.public_repos}</span>
+              <span>No. of public gists:&nbsp;&nbsp;{userData?.data?.public_gists}</span>
               <span>Profile created at:</span>
               
-           <span>Profile created at:&nbsp;&nbsp;{userData?.data?.created_at}</span>
-              {/* <span>
-                Date : {time[0]}
-              </span>
-              <span>
-                Time : {time[1]}
-              </span> */}
+              <span>Profile created at:&nbsp;&nbsp;{userData?.data?.created_at}</span>
             </VStack>
           </CardBody>
             
